@@ -2,8 +2,10 @@ import fastifyCors from '@fastify/cors'
 import fastify from 'fastify'
 import fastifySwagger from '@fastify/swagger'
 import fastifySwaggerUI from '@fastify/swagger-ui'
-import fastifyJwt from 'fastify/jwt'
+import fastifyJwt from '@fastify/jwt'
 import { authenticateWithPassword } from '@/http/routes/auth/authenticate-with-password'
+import { getProfile } from '@/http/routes/auth/get-profile'
+import { errorHandler } from '@/http/error-handler'
 
 import {
   jsonSchemaTransform,
@@ -34,6 +36,9 @@ app.register(fastifySwagger, {
   },
   transform: jsonSchemaTransform,
 })
+
+app.setErrorHandler(errorHandler)
+
 app.register(fastifySwaggerUI, {
   routePrefix: '/docs',
 })
@@ -42,6 +47,7 @@ app.register(fastifyCors)
 
 app.register(createAccount)
 app.register(authenticateWithPassword)
+app.register(getProfile)
 
 app.listen({ port: 3333 }).then(() => {
   console.log('HTTP server running!')
