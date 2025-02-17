@@ -10,4 +10,6 @@ export const inviteSubject = z.tuple([
   z.literal('Invite'),
 ])
 
-export type InviteSubject = z.infer<typeof inviteSubject>
+// export type InviteSubject = z.infer<typeof inviteSubject>
+
+export type InviteSubject = ['manage' | 'get' | 'create' | 'delete', 'Invite']

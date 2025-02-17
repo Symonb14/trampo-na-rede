@@ -5,6 +5,6 @@ export const billingSubject = z.tuple([
   z.literal('Billing'),
 ])
 
-export type BillingSubject = z.infer<typeof billingSubject>
+// export type BillingSubject = z.infer<typeof billingSubject>
 
 export type BillingSubject = ['manage' | 'get' | 'export', 'Billing']
